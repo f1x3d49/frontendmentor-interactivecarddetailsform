@@ -16,6 +16,9 @@ module.exports = {
         dgviolet: "hsl(var(--color-dgviolet) / <alpha-value>)",
         vdviolet: "hsl(var(--color-vdviolet) / <alpha-value>)",
       },
+      fontFamily: {
+        main: ["Space Grotesk", "sans-serif"],
+      },
     },
   },
   plugins: [],
