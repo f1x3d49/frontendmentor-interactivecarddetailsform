@@ -14,4 +14,8 @@
     --color-dgviolet: 279deg 6% 55%;
     --color-vdviolet: 278deg 68% 11%;
   }
+
+  input {
+    @apply border border-red-500 focus:outline-none;
+  }
 }
