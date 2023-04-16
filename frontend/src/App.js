@@ -1,3 +1,4 @@
+import CardBack from "./components/CardBack";
 import CardFront from "./components/CardFront";
 
 function App() {
@@ -5,6 +6,7 @@ function App() {
     <div className="flex md:flex-row sm:flex-col w-screen h-screen font-main">
       <div className="md:h-screen md:w-1/3 sm:h-1/3 sm:w-screen md:bg-desktop sm:bg-mobile bg-cover">
         <CardFront />
+        <CardBack />
       </div>
       <div className="md:h-screen md:w-2/3 sm:h-2/3 sm:w-screen bg-swhite"></div>
     </div>

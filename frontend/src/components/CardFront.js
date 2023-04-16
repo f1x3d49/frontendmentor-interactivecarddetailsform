@@ -9,6 +9,15 @@ const CardFront = () => {
         <div className="w-10 h-10 bg-swhite rounded-full"></div>
         <div className="w-5 h-5 rounded-full border border-swhite"></div>
       </div>
+      <div className="absolute w-full h-auto top-32 px-8 flex flex-col gap-3 text-white font-main">
+        <h1 className="w-auto text-2xl tracking-widest ">
+          0000 0000 0000 0000
+        </h1>
+        <div className="flex justify-between text-sm">
+          <h2>JANE APPLESEED</h2>
+          <h2>00/00</h2>
+        </div>
+      </div>
     </article>
   );
 };
