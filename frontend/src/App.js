@@ -1,7 +1,6 @@
 import CardBack from "./components/CardBack";
 import CardFront from "./components/CardFront";
 import Component from "./components/Component";
-import FormComponent from "./components/FormComponent";
 
 function App() {
   return (
