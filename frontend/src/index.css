@@ -15,3 +15,9 @@
     --color-vdviolet: 278deg 68% 11%;
   }
 }
+
+@layer components {
+  .linear {
+    @apply focus-within:bg-gradient-to-r focus-within:from-[#6448fe] focus-within:to-[#600594];
+  }
+}

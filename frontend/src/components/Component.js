@@ -14,12 +14,18 @@ const Component = () => {
 
     // Validate Form
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required"),
-      number: Yup.number().required("Card Number is required"),
+      name: Yup.string().required("Can't be blank"),
+      number: Yup.number("Wrong format, numbers only")
+        .required("Can't be blank")
+        .min(16, "Not less than 16"),
       month: Yup.number()
-        .required("Expiry month is required")
+        .required("Can't be blank")
         .min(1, "This month does not exist")
         .max(12, "This month does not exist"),
+      year: Yup.number().required("Can't be blank"),
+      cvc: Yup.number()
+        .required("Can't be blank")
+        .min(3, "This CVC does not exist"),
     }),
 
     // Submit From
@@ -35,20 +41,34 @@ const Component = () => {
     >
       <div className="flex flex-col gap-1 col-span-2">
         <label htmlFor="name">CARDHOLDER NAME</label>
-        <div className="p-px bg-lgviolet rounded-lg focus-within:bg-gradient-to-r focus-within:from-[#6448fe] focus-within:to-[#600594]">
+        <div
+          className={`p-px bg-lgviolet rounded-lg ${
+            formik.errors.name ? "bg-sred" : "linear"
+          }`}
+        >
           <input
             type="text"
             name="name"
             value={formik.values.name}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             placeholder="e.g. Jane Appleseed"
             className="h-8 w-full p-5 text-base text-vdviolet rounded-lg focus:outline-none"
           />
         </div>
+        {formik.errors.name ? (
+          <div className="text-sred text-[10px] font-medium mt-1">
+            {formik.errors.name}
+          </div>
+        ) : null}
       </div>
       <div className="flex flex-col gap-1 col-span-2">
         <label htmlFor="number">CARD NUMBER</label>
-        <div className="p-px bg-lgviolet rounded-lg focus-within:bg-gradient-to-r focus-within:from-[#6448fe] focus-within:to-[#600594]">
+        <div
+          className={`p-px bg-lgviolet rounded-lg ${
+            formik.errors.number ? "bg-sred" : "linear"
+          }`}
+        >
           <input
             type="text"
             name="number"
@@ -58,11 +78,20 @@ const Component = () => {
             className="h-8 w-full p-5 text-base text-vdviolet rounded-lg focus:outline-none"
           />
         </div>
+        {formik.errors.name ? (
+          <div className="text-sred text-[10px] font-medium mt-1">
+            {formik.errors.number}
+          </div>
+        ) : null}
       </div>
       <div className="flex flex-col gap-1 w-full justify-between">
         <label className="">EXP. DATE (MM/YY)</label>
         <div className="flex gap-2">
-          <div className="p-px bg-lgviolet rounded-lg focus-within:bg-gradient-to-r focus-within:from-[#6448fe] focus-within:to-[#600594]">
+          <div
+            className={`p-px bg-lgviolet rounded-lg ${
+              formik.errors.month ? "bg-sred" : "linear"
+            }`}
+          >
             <input
               type="text"
               name="month"
@@ -72,7 +101,16 @@ const Component = () => {
               className="w-24 h-8 p-5 text-base text-vdviolet rounded-lg focus:outline-none"
             />
           </div>
-          <div className="p-px bg-lgviolet rounded-lg focus-within:bg-gradient-to-r focus-within:from-[#6448fe] focus-within:to-[#600594]">
+          {formik.errors.month ? (
+            <div className="text-sred text-[10px] font-medium mt-1">
+              {formik.errors.name}
+            </div>
+          ) : null}
+          <div
+            className={`p-px bg-lgviolet rounded-lg ${
+              formik.errors.year ? "bg-sred" : "linear"
+            }`}
+          >
             <input
               type="text"
               name="year"
@@ -82,6 +120,11 @@ const Component = () => {
               className="w-24 h-8 p-5 text-base text-vdviolet rounded-lg focus:outline-none"
             />
           </div>
+          {formik.errors.year ? (
+            <div className="text-sred text-[10px] font-medium mt-1">
+              {formik.errors.year}
+            </div>
+          ) : null}
         </div>
       </div>
       <div className="flex flex-col gap-1   ">
