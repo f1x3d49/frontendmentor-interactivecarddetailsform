@@ -51,7 +51,6 @@ const Component = () => {
             name="name"
             value={formik.values.name}
             onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
             placeholder="e.g. Jane Appleseed"
             className="h-8 w-full p-5 text-base text-vdviolet rounded-lg focus:outline-none"
           />
@@ -101,11 +100,7 @@ const Component = () => {
               className="w-24 h-8 p-5 text-base text-vdviolet rounded-lg focus:outline-none"
             />
           </div>
-          {formik.errors.month ? (
-            <div className="text-sred text-[10px] font-medium mt-1">
-              {formik.errors.name}
-            </div>
-          ) : null}
+
           <div
             className={`p-px bg-lgviolet rounded-lg ${
               formik.errors.year ? "bg-sred" : "linear"
@@ -120,16 +115,20 @@ const Component = () => {
               className="w-24 h-8 p-5 text-base text-vdviolet rounded-lg focus:outline-none"
             />
           </div>
-          {formik.errors.year ? (
-            <div className="text-sred text-[10px] font-medium mt-1">
-              {formik.errors.year}
-            </div>
-          ) : null}
         </div>
+        {formik.errors.year ? (
+          <div className="text-sred text-[10px] font-medium mt-1">
+            {formik.errors.year}
+          </div>
+        ) : null}
       </div>
       <div className="flex flex-col gap-1   ">
         <label htmlFor="cvc">CVC</label>
-        <div className="p-px bg-lgviolet rounded-lg focus-within:bg-gradient-to-r focus-within:from-[#6448fe] focus-within:to-[#600594]">
+        <div
+          className={`p-px bg-lgviolet rounded-lg ${
+            formik.errors.cvc ? "bg-sred" : "slate"
+          }`}
+        >
           <input
             type="text"
             name="cvc"
@@ -139,6 +138,11 @@ const Component = () => {
             className="h-8 w-full p-5 text-base text-vdviolet rounded-lg focus:outline-none"
           />
         </div>
+        {formik.errors.cvc ? (
+          <div className="text-sred text-[10px] font-medium mt-1">
+            {formik.errors.cvc}
+          </div>
+        ) : null}
       </div>
       <button
         type="submit"
