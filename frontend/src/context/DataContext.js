@@ -1,8 +1,13 @@
-import React, { createContext } from "react";
-import { data } from "../components/Component";
+import React, { createContext, useState } from "react";
 
 export const DataContext = createContext();
 
 export const DataConextProvider = ({ children }) => {
-  return <DataContext.Provider value={data}>{children}</DataContext.Provider>;
+  const [details, setDetails] = useState("");
+
+  return (
+    <DataContext.Provider value={[details, setDetails]}>
+      {children}
+    </DataContext.Provider>
+  );
 };

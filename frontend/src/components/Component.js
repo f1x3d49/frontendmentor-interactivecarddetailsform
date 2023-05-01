@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
-export var data = "";
+import { DataContext } from "../context/DataContext";
 
 const Component = () => {
+  const [details, setDetails] = useContext(DataContext);
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -31,12 +32,13 @@ const Component = () => {
     }),
 
     // OnSubmit send data to Context
-    onSubmit: (values) => {
-      data = formik.values;
-      console.log(data);
+    onSubmit: (values, { resetForm }) => {
+      setDetails(values);
+      resetForm({ values: "" });
     },
   });
 
+  console.log(details);
   return (
     <form
       onSubmit={formik.handleSubmit}
