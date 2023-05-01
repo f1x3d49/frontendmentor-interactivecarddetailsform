@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import cardfront from "../images/bg-card-front.png";
+import { DataContext } from "../context/DataContext";
 
 const CardFront = () => {
+  const data = useContext(DataContext);
+
   return (
     <article className="absolute w-96 h-48 md:inset-x-60 md:inset-y-36 sm:z-20 sm:top-[150px] sm:left-[280px]">
       <img src={cardfront} alt="front-card" className="object-cover" />
@@ -11,7 +14,7 @@ const CardFront = () => {
       </div>
       <div className="absolute w-full h-auto top-32 px-8 flex flex-col gap-3 text-white font-main">
         <h1 className="w-auto text-2xl tracking-widest ">
-          0000 0000 0000 0000
+          {data.number ? data.number : "0000 0000 0000 0000"}
         </h1>
         <div className="flex justify-between text-sm">
           <h2>JANE APPLESEED</h2>

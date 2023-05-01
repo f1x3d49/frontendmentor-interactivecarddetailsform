@@ -2,6 +2,8 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+export var data = "";
+
 const Component = () => {
   const formik = useFormik({
     initialValues: {
@@ -28,9 +30,10 @@ const Component = () => {
         .min(3, "This CVC does not exist"),
     }),
 
-    // Submit From
+    // OnSubmit send data to Context
     onSubmit: (values) => {
-      console.log(values);
+      data = formik.values;
+      console.log(data);
     },
   });
 
