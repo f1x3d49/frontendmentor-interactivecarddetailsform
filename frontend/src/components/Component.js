@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { useFormik } from "formik";
+import { setNestedObjectValues, useFormik } from "formik";
 import * as Yup from "yup";
 import { DataContext } from "../context/DataContext";
+import { SubmitContext } from "../context/SubmitContext";
 
 const Component = () => {
   const [details, setDetails] = useContext(DataContext);
+  const [hidden, setHidden] = useContext(SubmitContext);
 
   const formik = useFormik({
     initialValues: {
@@ -34,15 +36,17 @@ const Component = () => {
     // OnSubmit send data to Context
     onSubmit: (values, { resetForm }) => {
       setDetails(values);
+      setHidden(true);
       resetForm({ values: "" });
     },
   });
 
-  console.log(details);
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="grid grid-cols-2 gap-3 tracking-widest text-xs  max-w-md"
+      className={`grid grid-cols-2 gap-3 tracking-widest text-xs  max-w-md ${
+        !hidden ? "block" : "hidden"
+      }`}
     >
       <div className="flex flex-col gap-1 col-span-2">
         <label htmlFor="name">CARDHOLDER NAME</label>
